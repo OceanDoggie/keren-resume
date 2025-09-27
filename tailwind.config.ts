@@ -82,8 +82,10 @@ export default {
           offline: "rgb(156 163 175)",
         },
         brand: {
-          primary: "#2b2e77",
-          accent: "#f29a76",
+          primary: "#2c3e50",
+          accent: "#e67e22",
+          secondary: "#34495e",
+          light: "#ecf0f1",
         },
       },
       fontFamily: {
