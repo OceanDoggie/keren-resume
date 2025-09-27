@@ -44,6 +44,7 @@ export default function ProjectsPage() {
         "Validating product-market fit in competitive fitness app landscape"
       ],
       icon: <Lightbulb className="h-6 w-6" />,
+      externalLink: null,
       futureGoals: [
         "Launch public beta version with core functionality",
         "Gather user feedback and iterate on product features",
@@ -86,6 +87,10 @@ export default function ProjectsPage() {
         "Ensuring accessibility for users with varying technical backgrounds"
       ],
       icon: <Brain className="h-6 w-6" />,
+      externalLink: {
+        url: "https://gesturecontrolworkshop.netlify.app",
+        text: "查看演示 / View Demo"
+      },
       upcomingEvents: [
         {
           event: "Classroom Workshops",
@@ -282,15 +287,15 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                     
-                    {project.id === "ai-pose-coach" && (
+                    {project.externalLink && (
                       <Button 
                         variant="outline" 
                         size="sm"
-                        onClick={() => console.log("View project details")}
-                        data-testid={`button-view-${project.id}`}
+                        onClick={() => window.open(project.externalLink.url, '_blank')}
+                        data-testid={`button-external-${project.id}`}
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        View Details
+                        {project.externalLink.text}
                       </Button>
                     )}
                   </div>

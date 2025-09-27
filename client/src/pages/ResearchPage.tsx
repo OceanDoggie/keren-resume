@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, FileText, Users, Database, BarChart3 } from "lucide-react";
+import { Calendar, MapPin, FileText, Users, Database, BarChart3, ExternalLink } from "lucide-react";
 import { downloadResume } from "@/utils/downloadResume";
 
 export default function ResearchPage() {
@@ -51,7 +51,8 @@ export default function ResearchPage() {
           status: "Archived at GGC Health Science Department",
           availability: "Available upon request"
         }
-      ]
+      ],
+      externalLink: null
     },
     {
       id: "quantitative-workplace-bullying", 
@@ -84,7 +85,8 @@ export default function ResearchPage() {
         "Developing IRB protocols and ethics documentation"
       ],
       skills: ["Python", "R", "Survey Design", "Statistical Analysis", "Research Ethics", "Data Visualization"],
-      publications: []
+      publications: [],
+      externalLink: null
     }
   ];
 
@@ -217,6 +219,18 @@ export default function ResearchPage() {
                         ))}
                       </div>
                     </div>
+                    
+                    {project.externalLink && project.externalLink.url && (
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => window.open(project.externalLink?.url || '', '_blank')}
+                        data-testid={`button-external-${project.id}`}
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        {project.externalLink?.text || 'View External Link'}
+                      </Button>
+                    )}
                   </div>
 
                   {/* Publications */}
