@@ -44,7 +44,11 @@ export default function ProjectsPage() {
         "Validating product-market fit in competitive fitness app landscape"
       ],
       icon: <Lightbulb className="h-6 w-6" />,
-      externalLink: null,
+      externalLink: {
+        url: "#",
+        text: "即将发布 / Coming Soon",
+        isPlaceholder: true
+      },
       futureGoals: [
         "Launch public beta version with core functionality",
         "Gather user feedback and iterate on product features",
@@ -89,7 +93,8 @@ export default function ProjectsPage() {
       icon: <Brain className="h-6 w-6" />,
       externalLink: {
         url: "https://gesturecontrolworkshop.netlify.app",
-        text: "查看演示 / View Demo"
+        text: "查看演示 / View Demo",
+        isPlaceholder: false
       },
       upcomingEvents: [
         {
@@ -103,6 +108,49 @@ export default function ProjectsPage() {
           date: "Fall 2025",
           description: "Showcasing project to broader academic and technology community"
         }
+      ]
+    },
+    {
+      id: "manifest-write",
+      title: "Manifest Write",
+      subtitle: "AI-Powered Writing Assistant",
+      role: "Concept Development & Design",
+      period: "Future Project",
+      type: "Product Concept",
+      status: "Planning Phase",
+      description: "An innovative AI-powered writing platform designed to help users articulate their thoughts and ideas more effectively. This project focuses on bridging the gap between human creativity and AI assistance in written communication.",
+      overview: "Developing an intelligent writing assistant that understands context, tone, and user intent to provide meaningful suggestions and improvements for various types of written content.",
+      objectives: [
+        "Create intuitive AI writing assistance for diverse content types",
+        "Develop context-aware suggestion algorithms",
+        "Design seamless user experience for writers of all levels",
+        "Build collaborative writing features for teams"
+      ],
+      achievements: [
+        "Conceptual framework and product vision defined",
+        "Market research and competitive analysis in progress",
+        "User experience wireframes and design concepts",
+        "Technical architecture planning for AI integration"
+      ],
+      technologies: ["AI/ML", "Natural Language Processing", "User Experience Design", "Product Strategy"],
+      skills: ["Product Strategy", "AI Integration", "UX Design", "Market Research", "Technical Planning"],
+      challenges: [
+        "Balancing AI assistance with human creativity",
+        "Creating context-aware writing suggestions",
+        "Designing intuitive interface for complex AI features",
+        "Ensuring content quality and originality"
+      ],
+      icon: <Code className="h-6 w-6" />,
+      externalLink: {
+        url: "#",
+        text: "即将发布 / Coming Soon",
+        isPlaceholder: true
+      },
+      futureGoals: [
+        "Develop MVP with core AI writing features",
+        "Conduct user testing and feedback collection",
+        "Explore partnerships with content platforms",
+        "Scale AI models for various writing styles"
       ]
     }
   ];
@@ -291,11 +339,16 @@ export default function ProjectsPage() {
                       <Button 
                         variant="outline" 
                         size="sm"
-                        onClick={() => window.open(project.externalLink.url, '_blank')}
+                        onClick={() => {
+                          if (!project.externalLink?.isPlaceholder) {
+                            window.open(project.externalLink?.url, '_blank')
+                          }
+                        }}
+                        disabled={project.externalLink?.isPlaceholder}
                         data-testid={`button-external-${project.id}`}
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        {project.externalLink.text}
+                        {project.externalLink?.text}
                       </Button>
                     )}
                   </div>

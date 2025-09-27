@@ -52,7 +52,18 @@ export default function ResearchPage() {
           availability: "Available upon request"
         }
       ],
-      externalLink: null
+      externalLinks: [
+        {
+          url: "/api/download/research/bullying-trends-report",
+          text: "查看研究报告 / View Research Report",
+          type: "report"
+        },
+        {
+          url: "/api/download/research/methodology-report", 
+          text: "查看方法论 / View Methodology",
+          type: "methodology"
+        }
+      ]
     },
     {
       id: "quantitative-workplace-bullying", 
@@ -86,7 +97,7 @@ export default function ResearchPage() {
       ],
       skills: ["Python", "R", "Survey Design", "Statistical Analysis", "Research Ethics", "Data Visualization"],
       publications: [],
-      externalLink: null
+      externalLinks: []
     }
   ];
 
@@ -220,16 +231,21 @@ export default function ResearchPage() {
                       </div>
                     </div>
                     
-                    {project.externalLink && project.externalLink.url && (
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={() => window.open(project.externalLink?.url || '', '_blank')}
-                        data-testid={`button-external-${project.id}`}
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {project.externalLink?.text || 'View External Link'}
-                      </Button>
+                    {project.externalLinks && project.externalLinks.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {project.externalLinks.map((link, index) => (
+                          <Button 
+                            key={index}
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => window.open(link.url, '_blank')}
+                            data-testid={`button-external-${project.id}-${index}`}
+                          >
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            {link.text}
+                          </Button>
+                        ))}
+                      </div>
                     )}
                   </div>
 
