@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Download, Github, Mail, ChevronDown } from "lucide-react";
+import { downloadResume } from "@/utils/downloadResume";
 
 interface NavigationProps {
   onDownloadResume?: () => void;
@@ -24,13 +25,7 @@ export default function Navigation({ onDownloadResume }: NavigationProps) {
       onDownloadResume();
     } else {
       // Fallback download functionality
-      const downloadUrl = '/api/download/resume?format=pdf';
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = 'Keren_Zhang_Resume.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      downloadResume('pdf');
     }
   };
 
@@ -48,11 +43,11 @@ export default function Navigation({ onDownloadResume }: NavigationProps) {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             {/* About Link */}
-            <Link href="/about" data-testid="link-about">
-              <Button variant="ghost" className={location === '/about' ? 'bg-muted' : ''}>
+            <Button variant="ghost" className={location === '/about' ? 'bg-muted' : ''} asChild>
+              <Link href="/about" data-testid="link-about">
                 About
-              </Button>
-            </Link>
+              </Link>
+            </Button>
 
             {/* Education Dropdown */}
             <DropdownMenu onOpenChange={(open) => setActiveDropdown(open ? 'education' : null)}>
@@ -68,21 +63,17 @@ export default function Navigation({ onDownloadResume }: NavigationProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-64">
                 <DropdownMenuItem asChild data-testid="dropdown-item-ggc">
-                  <Link href="/education">
-                    <div className="flex flex-col">
-                      <div className="font-medium">Georgia Gwinnett College</div>
-                      <div className="text-sm text-muted-foreground">B.S. Data Science (Sophomore)</div>
-                      <div className="text-xs text-muted-foreground">Spring 2024 – Present</div>
-                    </div>
+                  <Link href="/education" className="flex flex-col cursor-pointer">
+                    <div className="font-medium">Georgia Gwinnett College</div>
+                    <div className="text-sm text-muted-foreground">B.S. Data Science (Sophomore)</div>
+                    <div className="text-xs text-muted-foreground">Spring 2024 – Present</div>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild data-testid="dropdown-item-hubei">
-                  <Link href="/education">
-                    <div className="flex flex-col">
-                      <div className="font-medium">Hubei University</div>
-                      <div className="text-sm text-muted-foreground">B.S. Psychology Coursework</div>
-                      <div className="text-xs text-muted-foreground">Sep 2023 – Nov 2023</div>
-                    </div>
+                  <Link href="/education" className="flex flex-col cursor-pointer">
+                    <div className="font-medium">Hubei University</div>
+                    <div className="text-sm text-muted-foreground">B.S. Psychology Coursework</div>
+                    <div className="text-xs text-muted-foreground">Sep 2023 – Nov 2023</div>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -102,21 +93,17 @@ export default function Navigation({ onDownloadResume }: NavigationProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-80">
                 <DropdownMenuItem asChild data-testid="dropdown-item-qualitative-research">
-                  <Link href="/research">
-                    <div className="flex flex-col">
-                      <div className="font-medium">Workplace Bullying - Qualitative Research</div>
-                      <div className="text-sm text-muted-foreground">Health Science Department, GGC</div>
-                      <div className="text-xs text-muted-foreground">Nov 2024 – Apr 2025</div>
-                    </div>
+                  <Link href="/research" className="flex flex-col cursor-pointer">
+                    <div className="font-medium">Workplace Bullying - Qualitative Research</div>
+                    <div className="text-sm text-muted-foreground">Health Science Department, GGC</div>
+                    <div className="text-xs text-muted-foreground">Nov 2024 – Apr 2025</div>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild data-testid="dropdown-item-quantitative-research">
-                  <Link href="/research">
-                    <div className="flex flex-col">
-                      <div className="font-medium">Workplace Bullying - Quantitative Study</div>
-                      <div className="text-sm text-muted-foreground">Health Science Department, GGC</div>
-                      <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
-                    </div>
+                  <Link href="/research" className="flex flex-col cursor-pointer">
+                    <div className="font-medium">Workplace Bullying - Quantitative Study</div>
+                    <div className="text-sm text-muted-foreground">Health Science Department, GGC</div>
+                    <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -136,38 +123,34 @@ export default function Navigation({ onDownloadResume }: NavigationProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-80">
                 <DropdownMenuItem asChild data-testid="dropdown-item-ai-pose-coach">
-                  <Link href="/projects">
-                    <div className="flex flex-col">
-                      <div className="font-medium">AI Pose Coach</div>
-                      <div className="text-sm text-muted-foreground">Product Concept & MVP Exploration</div>
-                      <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
-                    </div>
+                  <Link href="/projects" className="flex flex-col cursor-pointer">
+                    <div className="font-medium">AI Pose Coach</div>
+                    <div className="text-sm text-muted-foreground">Product Concept & MVP Exploration</div>
+                    <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild data-testid="dropdown-item-gesture-control">
-                  <Link href="/projects">
-                    <div className="flex flex-col">
-                      <div className="font-medium">Gesture Control</div>
-                      <div className="text-sm text-muted-foreground">ASL Hand-Recognition Learning Tool</div>
-                      <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
-                    </div>
+                  <Link href="/projects" className="flex flex-col cursor-pointer">
+                    <div className="font-medium">Gesture Control</div>
+                    <div className="text-sm text-muted-foreground">ASL Hand-Recognition Learning Tool</div>
+                    <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
             {/* Contact & Resume Links */}
-            <Link href="/contact" data-testid="link-contact">
-              <Button variant="ghost" className={location === '/contact' ? 'bg-muted' : ''}>
+            <Button variant="ghost" className={location === '/contact' ? 'bg-muted' : ''} asChild>
+              <Link href="/contact" data-testid="link-contact">
                 Contact
-              </Button>
-            </Link>
+              </Link>
+            </Button>
 
-            <Link href="/resume" data-testid="link-resume">
-              <Button variant="ghost" className={location === '/resume' ? 'bg-muted' : ''}>
+            <Button variant="ghost" className={location === '/resume' ? 'bg-muted' : ''} asChild>
+              <Link href="/resume" data-testid="link-resume">
                 Resume
-              </Button>
-            </Link>
+              </Link>
+            </Button>
 
             {/* Social Links */}
             <div className="flex items-center gap-2">

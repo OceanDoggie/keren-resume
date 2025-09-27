@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+import { downloadResume } from "@/utils/downloadResume";
 import { 
   Mail, 
   Github, 
@@ -27,16 +28,7 @@ export default function ContactPage() {
   });
 
   const handleDownloadResume = () => {
-    console.log("Downloading resume...");
-    
-    // Create download link and trigger download
-    const downloadUrl = '/api/download/resume?format=pdf';
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.download = 'Keren_Zhang_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    downloadResume('pdf');
   };
 
   const handleSubmit = (e: React.FormEvent) => {

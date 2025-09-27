@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+import { downloadResume } from "@/utils/downloadResume";
 import { 
   Download, 
   FileText, 
@@ -20,19 +21,11 @@ import {
 } from "lucide-react";
 
 export default function ResumePage() {
-  const [downloadFormat, setDownloadFormat] = useState<'pdf' | 'docx'>('pdf');
+  // Only PDF is currently supported
+  const downloadFormat = 'pdf';
 
   const handleDownloadResume = (format: 'pdf' | 'docx' = 'pdf') => {
-    console.log(`Downloading resume in ${format} format...`);
-    
-    // Create download link and trigger download
-    const downloadUrl = `/api/download/resume?format=${format}`;
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.download = `Keren_Zhang_Resume.${format}`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    downloadResume(format);
   };
 
   const resumeSections = [
@@ -152,37 +145,32 @@ export default function ResumePage() {
                   <div className="space-y-6">
                     {/* Format Selection */}
                     <div>
-                      <h3 className="font-medium text-foreground mb-3">Select Format</h3>
+                      <h3 className="font-medium text-foreground mb-3">Available Format</h3>
                       <div className="flex gap-3">
                         <Button 
-                          variant={downloadFormat === 'pdf' ? 'default' : 'outline'}
-                          onClick={() => setDownloadFormat('pdf')}
+                          variant="default"
+                          disabled
                           data-testid="button-format-pdf"
                         >
                           <FileText className="h-4 w-4 mr-2" />
                           PDF
                         </Button>
-                        <Button 
-                          variant={downloadFormat === 'docx' ? 'default' : 'outline'}
-                          onClick={() => setDownloadFormat('docx')}
-                          data-testid="button-format-docx"
-                        >
-                          <FileText className="h-4 w-4 mr-2" />
-                          DOCX
-                        </Button>
+                        <div className="text-sm text-muted-foreground mt-2">
+                          DOCX format coming soon
+                        </div>
                       </div>
                     </div>
 
                     {/* Download Buttons */}
                     <div className="flex flex-col sm:flex-row gap-3">
                       <Button 
-                        onClick={() => handleDownloadResume(downloadFormat)}
+                        onClick={() => handleDownloadResume('pdf')}
                         className="bg-brand-accent hover:bg-brand-accent/90 text-white flex-1"
                         size="lg"
                         data-testid="button-download-primary"
                       >
                         <Download className="h-4 w-4 mr-2" />
-                        Download {downloadFormat.toUpperCase()}
+                        Download PDF
                       </Button>
                       <Button 
                         variant="outline"

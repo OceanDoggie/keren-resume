@@ -4,19 +4,11 @@ import EducationSection from "@/components/EducationSection";
 import ResearchSection from "@/components/ResearchSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import Footer from "@/components/Footer";
+import { downloadResume } from "@/utils/downloadResume";
 
 export default function HomePage() {
   const handleDownloadResume = () => {
-    console.log("Downloading resume...");
-    
-    // Create download link and trigger download
-    const downloadUrl = '/api/download/resume?format=pdf';
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.download = 'Keren_Zhang_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    downloadResume('pdf');
   };
 
   return (

@@ -3,19 +3,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Users, ExternalLink, Lightbulb, Brain, Target, Code, Presentation } from "lucide-react";
+import { downloadResume } from "@/utils/downloadResume";
 
 export default function ProjectsPage() {
   const handleDownloadResume = () => {
-    console.log("Downloading resume...");
-    
-    // Create download link and trigger download
-    const downloadUrl = '/api/download/resume?format=pdf';
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.download = 'Keren_Zhang_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    downloadResume('pdf');
   };
 
   const projects = [
