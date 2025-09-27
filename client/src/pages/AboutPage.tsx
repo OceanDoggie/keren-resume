@@ -3,12 +3,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Download, MapPin, Heart, Target, Lightbulb } from "lucide-react";
+import { Download, MapPin, Heart, Target, Lightbulb, Users, Award } from "lucide-react";
 
 export default function AboutPage() {
   const handleDownloadResume = () => {
     console.log("Downloading resume...");
-    alert("Resume download would be implemented here.");
+    
+    // Create download link and trigger download
+    const downloadUrl = '/api/download/resume?format=pdf';
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = 'Keren_Zhang_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const interests = [
@@ -16,9 +24,11 @@ export default function AboutPage() {
     "Qualitative Research", 
     "Product Development",
     "Human-Computer Interaction",
-    "Taekwondo",
-    "Video Editing",
-    "Mind Mapping"
+    "Taekwondo & Martial Arts",
+    "Video Editing & Content Creation",
+    "Mind Mapping & Visual Thinking",
+    "Environment Protection",
+    "Community Leadership"
   ];
 
   const traits = [
@@ -68,10 +78,17 @@ export default function AboutPage() {
                 My journey combines qualitative and quantitative research with hands-on prototyping, bridging 
                 psychology insights with data analysis and software development.
               </p>
-              <p className="text-foreground leading-relaxed">
+              <p className="text-foreground leading-relaxed mb-4">
                 Coming from a background that includes both psychology coursework at Hubei University and 
                 leadership roles in student organizations, I bring a unique perspective to data science that 
                 emphasizes human-centered, evidence-based approaches to problem-solving.
+              </p>
+              <p className="text-foreground leading-relaxed">
+                My leadership journey began early with roles as Vice President of our Students' Union (2017-2019) 
+                and later as Vice President of the Taekwondo Club (2020-2021). I also founded an Environment 
+                Protection Group, demonstrating my commitment to both community building and environmental 
+                responsibility. These experiences taught me the importance of collaboration, strategic thinking, 
+                and taking initiative to create positive change.
               </p>
             </CardContent>
           </Card>
@@ -97,7 +114,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-medium text-foreground mb-3">Personal Interests & Hobbies</h3>
+                  <h3 className="font-medium text-foreground mb-3">Personal Interests & Leadership</h3>
                   <div className="flex flex-wrap gap-2">
                     {interests.slice(4).map((interest) => (
                       <Badge key={interest} variant="outline" className="mb-2">
@@ -105,6 +122,58 @@ export default function AboutPage() {
                       </Badge>
                     ))}
                   </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Leadership & Activities */}
+          <Card className="mb-8" data-testid="card-leadership">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-brand-primary">
+                <Users className="h-5 w-5" />
+                Leadership & Activities
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="border-l-4 border-brand-accent/30 pl-4">
+                  <h4 className="font-medium text-foreground mb-1">Vice President, Students' Union</h4>
+                  <p className="text-sm text-muted-foreground mb-2">2017 - 2019</p>
+                  <p className="text-sm text-foreground">
+                    Led student government initiatives, coordinated campus events, and represented student interests 
+                    in administrative meetings. Developed strong organizational and communication skills while 
+                    managing diverse student committees.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-brand-accent/30 pl-4">
+                  <h4 className="font-medium text-foreground mb-1">Vice President, Taekwondo Club</h4>
+                  <p className="text-sm text-muted-foreground mb-2">2020 - 2021</p>
+                  <p className="text-sm text-foreground">
+                    Managed club operations, organized training sessions and tournaments, and mentored new members. 
+                    Balanced athletic excellence with leadership responsibility, fostering team unity and discipline.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-brand-accent/30 pl-4">
+                  <h4 className="font-medium text-foreground mb-1">Founder, Environment Protection Group</h4>
+                  <p className="text-sm text-muted-foreground mb-2">Initiative Period</p>
+                  <p className="text-sm text-foreground">
+                    Founded and led environmental awareness initiatives on campus. Organized clean-up campaigns, 
+                    educational workshops, and sustainability projects, demonstrating entrepreneurial spirit and 
+                    commitment to environmental responsibility.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-brand-accent/30 pl-4">
+                  <h4 className="font-medium text-foreground mb-1">Physics Class Representative</h4>
+                  <p className="text-sm text-muted-foreground mb-2">2019 - 2023</p>
+                  <p className="text-sm text-foreground">
+                    Served as liaison between students and faculty, coordinated study groups, and facilitated 
+                    academic discussions. Helped peers succeed in challenging physics coursework while maintaining 
+                    strong academic performance.
+                  </p>
                 </div>
               </div>
             </CardContent>

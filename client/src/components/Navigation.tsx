@@ -19,7 +19,19 @@ export default function Navigation({ onDownloadResume }: NavigationProps) {
 
   const handleDownload = () => {
     console.log("Download resume triggered");
-    onDownloadResume?.();
+    
+    if (onDownloadResume) {
+      onDownloadResume();
+    } else {
+      // Fallback download functionality
+      const downloadUrl = '/api/download/resume?format=pdf';
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = 'Keren_Zhang_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   return (

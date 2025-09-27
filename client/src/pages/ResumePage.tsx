@@ -24,7 +24,15 @@ export default function ResumePage() {
 
   const handleDownloadResume = (format: 'pdf' | 'docx' = 'pdf') => {
     console.log(`Downloading resume in ${format} format...`);
-    alert(`Resume download in ${format.toUpperCase()} format would be implemented here.`);
+    
+    // Create download link and trigger download
+    const downloadUrl = `/api/download/resume?format=${format}`;
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = `Keren_Zhang_Resume.${format}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const resumeSections = [
@@ -70,10 +78,10 @@ export default function ResumePage() {
       title: "Leadership Experience",
       icon: <Briefcase className="h-5 w-5" />,
       content: [
-        "Vice President, Students' Union (2017-2019)",
-        "Vice President, Taekwondo Club (2020-2021)",
-        "Physics Class Representative (2019-2023)",
-        "Environment Protection Group Founder"
+        "Vice President, Students' Union (2017-2019) - Led student government initiatives",
+        "Vice President, Taekwondo Club (2020-2021) - Managed club operations and mentored members",
+        "Founder, Environment Protection Group - Organized sustainability initiatives",
+        "Physics Class Representative (2019-2023) - Academic liaison and peer support"
       ]
     },
     {

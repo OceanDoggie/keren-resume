@@ -7,17 +7,16 @@ import Footer from "@/components/Footer";
 
 export default function HomePage() {
   const handleDownloadResume = () => {
-    // TODO: Implement actual resume download functionality
     console.log("Downloading resume...");
     
-    // For now, we'll create a simple alert
-    alert("Resume download would be implemented here. In a real application, this would download the PDF file from the server.");
-    
-    // In the future, this could be:
-    // const link = document.createElement('a');
-    // link.href = '/api/resume/download';
-    // link.download = 'Keren_Zhang_Resume.pdf';
-    // link.click();
+    // Create download link and trigger download
+    const downloadUrl = '/api/download/resume?format=pdf';
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = 'Keren_Zhang_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (

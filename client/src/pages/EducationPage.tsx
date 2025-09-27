@@ -6,7 +6,15 @@ import { Calendar, MapPin, GraduationCap, Users, Award, BookOpen } from "lucide-
 export default function EducationPage() {
   const handleDownloadResume = () => {
     console.log("Downloading resume...");
-    alert("Resume download would be implemented here.");
+    
+    // Create download link and trigger download
+    const downloadUrl = '/api/download/resume?format=pdf';
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = 'Keren_Zhang_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const educationHistory = [
