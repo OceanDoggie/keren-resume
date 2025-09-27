@@ -104,9 +104,9 @@ export default function ContactPage() {
                         <h3 className="font-medium text-foreground">Email</h3>
                         <p className="text-muted-foreground">kzhang1@ggc.edu</p>
                         <Button 
-                          variant="link" 
+                          variant="ghost" 
                           size="sm" 
-                          className="h-auto p-0 text-brand-accent"
+                          className="h-auto p-0 text-brand-accent hover:text-brand-accent/80"
                           asChild
                           data-testid="button-email-direct"
                         >
@@ -133,9 +133,9 @@ export default function ContactPage() {
                         <h3 className="font-medium text-foreground">GitHub</h3>
                         <p className="text-muted-foreground">@OceanDoggie</p>
                         <Button 
-                          variant="link" 
+                          variant="ghost" 
                           size="sm" 
-                          className="h-auto p-0 text-brand-accent"
+                          className="h-auto p-0 text-brand-accent hover:text-brand-accent/80"
                           asChild
                           data-testid="button-github-direct"
                         >
