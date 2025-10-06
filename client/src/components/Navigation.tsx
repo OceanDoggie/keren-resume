@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Download, Github, Mail, ChevronDown } from "lucide-react";
+import { Download, Github, Mail, ChevronDown, ExternalLink } from "lucide-react";
 import { downloadResume } from "@/utils/downloadResume";
 
 interface NavigationProps {
@@ -123,18 +123,79 @@ export default function Navigation({ onDownloadResume }: NavigationProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-80">
                 <DropdownMenuItem asChild data-testid="dropdown-item-ai-pose-coach">
-                  <Link href="/projects" className="flex flex-col cursor-pointer">
-                    <div className="font-medium">AI Pose Coach</div>
-                    <div className="text-sm text-muted-foreground">Product Concept & MVP Exploration</div>
-                    <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
-                  </Link>
+                  <div className="flex items-center justify-between w-full">
+                    <Link href="/projects" className="flex flex-col cursor-pointer flex-1">
+                      <div className="font-medium">AI Pose Coach</div>
+                      <div className="text-sm text-muted-foreground">Product Concept & MVP Exploration</div>
+                      <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
+                    </Link>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      asChild
+                      className="ml-2 p-1 h-6 w-6"
+                      data-testid="button-ai-pose-coach-link"
+                    >
+                      <a 
+                        href="https://aiposecoach.netlify.app/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </Button>
+                  </div>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild data-testid="dropdown-item-gesture-control">
-                  <Link href="/projects" className="flex flex-col cursor-pointer">
-                    <div className="font-medium">Gesture Control</div>
-                    <div className="text-sm text-muted-foreground">ASL Hand-Recognition Learning Tool</div>
-                    <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
-                  </Link>
+                  <div className="flex items-center justify-between w-full">
+                    <Link href="/projects" className="flex flex-col cursor-pointer flex-1">
+                      <div className="font-medium">Gesture Control</div>
+                      <div className="text-sm text-muted-foreground">ASL Hand-Recognition Learning Tool</div>
+                      <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
+                    </Link>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      asChild
+                      className="ml-2 p-1 h-6 w-6"
+                      data-testid="button-gesture-control-link"
+                    >
+                      <a 
+                        href="https://gesturecontrolworkshop.netlify.app/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </Button>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild data-testid="dropdown-item-manifest-write">
+                  <div className="flex items-center justify-between w-full">
+                    <Link href="/projects" className="flex flex-col cursor-pointer flex-1">
+                      <div className="font-medium">Manifest Write</div>
+                      <div className="text-sm text-muted-foreground">AI-Powered Writing Assistant</div>
+                      <div className="text-xs text-muted-foreground">Aug 2025 – Present</div>
+                    </Link>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      asChild
+                      className="ml-2 p-1 h-6 w-6"
+                      data-testid="button-manifest-write-link"
+                    >
+                      <a 
+                        href="https://manifestwrite.netlify.app/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </Button>
+                  </div>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

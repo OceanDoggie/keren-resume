@@ -45,9 +45,9 @@ export default function ProjectsPage() {
       ],
       icon: <Lightbulb className="h-6 w-6" />,
       externalLink: {
-        url: "#",
-        text: "即将发布 / Coming Soon",
-        isPlaceholder: true
+        url: "https://aiposecoach.netlify.app/",
+        text: "查看演示 / View Demo",
+        isPlaceholder: false
       },
       futureGoals: [
         "Launch public beta version with core functionality",
@@ -142,9 +142,9 @@ export default function ProjectsPage() {
       ],
       icon: <Code className="h-6 w-6" />,
       externalLink: {
-        url: "#",
-        text: "即将发布 / Coming Soon",
-        isPlaceholder: true
+        url: "https://manifestwrite.netlify.app/",
+        text: "查看演示 / View Demo",
+        isPlaceholder: false
       },
       futureGoals: [
         "Develop MVP with core AI writing features",
@@ -186,6 +186,22 @@ export default function ProjectsPage() {
                         <CardTitle className="text-2xl text-brand-primary">
                           {project.title}
                         </CardTitle>
+                        {project.externalLink && (
+                          <Button 
+                            size="sm"
+                            className="bg-brand-accent hover:bg-brand-accent/90 text-white"
+                            onClick={() => {
+                              if (!project.externalLink?.isPlaceholder) {
+                                window.open(project.externalLink?.url, '_blank')
+                              }
+                            }}
+                            disabled={project.externalLink?.isPlaceholder}
+                            data-testid={`button-external-top-${project.id}`}
+                          >
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            {project.externalLink?.text}
+                          </Button>
+                        )}
                       </div>
                       <CardDescription className="text-lg font-medium text-foreground mb-3">
                         {project.subtitle}
@@ -335,22 +351,7 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                     
-                    {project.externalLink && (
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={() => {
-                          if (!project.externalLink?.isPlaceholder) {
-                            window.open(project.externalLink?.url, '_blank')
-                          }
-                        }}
-                        disabled={project.externalLink?.isPlaceholder}
-                        data-testid={`button-external-${project.id}`}
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {project.externalLink?.text}
-                      </Button>
-                    )}
+                    {/* External link button moved to the header beside the title for higher visibility */}
                   </div>
                 </CardContent>
               </Card>
